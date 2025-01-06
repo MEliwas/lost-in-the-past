@@ -30,6 +30,7 @@ func _on_detector_body_entered(body):
 func _on_detector_body_exited(body):
 	if body.is_in_group("player"):
 		chase = false
+		
 
 func _on_attack_body_entered(body):
 	if body.is_in_group("player"):

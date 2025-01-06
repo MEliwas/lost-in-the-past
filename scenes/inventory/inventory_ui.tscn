@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://cem0wujuj6shl"]
+[gd_scene load_steps=2 format=3 uid="uid://bxbnos3drxhfp"]
 
-[ext_resource type="Script" path="res://codes/inventory/inventory_ui.gd" id="1_hnmyj"]
+[sub_resource type="GDScript" id="GDScript_xt05j"]
+script/source = "### Inventory_UI.gd
+
+extends Control
+
+# Scene-Tree Node references
+@onready var grid_container = $GridContainer
+
+func _ready():
+	# Connect function to signal to update inventory UI
+	Global.inventory_updated.connect(_on_inventory_updated)
+	_on_inventory_updated()
+
+# Update inventory UI
+func _on_inventory_updated():
+	# Clear existing slots
+	clear_grid_container()
+	# Add slots for each inventory position
+	for item in Global.inventory:
+		var slot = Global.inventory_slot_scene.instantiate()
+		grid_container.add_child(slot)
+		if item != null:
+			slot.set_item(item)
+		else:
+			slot.set_empty() 
+				
+# Clear inventory UI grid	
+func clear_grid_container():
+	while grid_container.get_child_count() > 0:
+		var child = grid_container.get_child(0)
+		grid_container.remove_child(child)
+		child.queue_free()
+"
 
 [node name="inventory_UI" type="Control"]
 layout_mode = 3
@@ -9,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hnmyj")
+script = SubResource("GDScript_xt05j")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1

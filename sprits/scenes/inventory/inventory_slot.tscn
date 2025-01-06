@@ -1,0 +1,201 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqi854bvo43n5"]
+
+[ext_resource type="Texture2D" uid="uid://p361h33pafin" path="res://sprits/cake.png" id="2_c5hgu"]
+
+[sub_resource type="GDScript" id="GDScript_u6i30"]
+script/source = "extends Control
+
+@onready var item_icon = $interBorder/item_icon
+@onready var item_quantity = $interBorder/item_icon/item_quantity
+@onready var info_panel = $info_panel
+@onready var item_name = $info_panel/item_name
+@onready var item_type = $info_panel/item_type
+@onready var item_effect = $info_panel/item_effect
+@onready var usage_panel = $usage_panel
+
+var item = null
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+
+func _on_button_item_mouse_exited():
+	info_panel.visible = false
+
+
+func _on_button_item_mouse_entered():
+	if item != null:
+		usage_panel.visible = !usage_panel.visible
+		info_panel.visible = true
+
+
+
+func _on_button_item_pressed():
+	if item != null:
+		usage_panel.visible = !usage_panel.visible
+
+
+func set_empty():
+	item_icon.texture = null
+	item_quantity.text = \"\"
+
+
+func set_item(new_item):
+	item = new_item
+	item_icon.texture = item[\"item_texture\"]
+	item_quantity.text = str(item[\"quantity\"])
+	item_name.text = str(item[\"item_name\"])
+	item_type.text = str(item[\"item_type\"])
+
+	if item[\"item_effect\"] != \"\":
+		item_effect.text = \"+ \" + str(item[\"item_effect\"])
+	else:
+		item_effect.text = \"\"
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8uhf"]
+
+[node name="inventory_slot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -1760.0
+offset_bottom = -920.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_u6i30")
+
+[node name="orderBorder" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.229395, 0.366127, 0.137759, 1)
+
+[node name="interBorder" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.712129, 0.712129, 0.712129, 1)
+
+[node name="item_icon" type="Sprite2D" parent="interBorder"]
+position = Vector2(70, 70)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_c5hgu")
+
+[node name="item_quantity" type="Label" parent="interBorder/item_icon"]
+offset_left = -26.0
+offset_top = -28.0
+offset_right = -14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button_item" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l8uhf")
+
+[node name="info_panel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = -5.0
+color = Color(0.229395, 0.366127, 0.137759, 1)
+
+[node name="item_name" type="Label" parent="info_panel"]
+layout_mode = 1
+offset_left = 5.0
+offset_right = 45.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "имя"
+
+[node name="item_type" type="Label" parent="info_panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -11.5
+offset_right = 45.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+theme_override_font_sizes/font_size = 30
+text = "тип"
+
+[node name="item_effect" type="Label" parent="info_panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 45.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.0885598, 0.0885599, 0.0885599, 1)
+theme_override_font_sizes/font_size = 30
+text = "эффект"
+
+[node name="usage_panel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = -5.0
+color = Color(0.229395, 0.366127, 0.137759, 1)
+
+[node name="use" type="Button" parent="usage_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_top = 10.0
+offset_right = 115.0
+offset_bottom = 53.0
+grow_horizontal = 2
+text = "использовать"
+
+[node name="delete" type="Button" parent="usage_panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -59.0
+offset_right = 115.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "бросить"
+
+[connection signal="mouse_entered" from="Button_item" to="." method="_on_button_item_mouse_entered"]
+[connection signal="mouse_exited" from="Button_item" to="." method="_on_button_item_mouse_exited"]
+[connection signal="pressed" from="Button_item" to="." method="_on_button_item_pressed"]

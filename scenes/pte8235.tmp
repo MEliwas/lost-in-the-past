@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://bppbn4ry4digd"]
+
+[ext_resource type="Script" path="res://codes/pterodaktel.gd" id="1_r2ddk"]
+[ext_resource type="Texture2D" uid="uid://cxutkwdtd8s24" path="res://scenes/pterodaktel.png" id="2_7pqqe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr48t"]
+atlas = ExtResource("2_7pqqe")
+region = Rect2(0, 0, 63, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs3dt"]
+atlas = ExtResource("2_7pqqe")
+region = Rect2(63, 0, 63, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dgrt"]
+atlas = ExtResource("2_7pqqe")
+region = Rect2(126, 0, 63, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vofcy"]
+atlas = ExtResource("2_7pqqe")
+region = Rect2(63, 0, 63, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c5yjt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr48t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs3dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dgrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vofcy")
+}],
+"loop": true,
+"name": &"idleOrRun",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlnhi"]
+size = Vector2(171, 62.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2i828"]
+radius = 219.957
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eiuf"]
+size = Vector2(183, 67)
+
+[node name="pterodaktel" type="CharacterBody2D"]
+script = ExtResource("1_r2ddk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(82, 25)
+scale = Vector2(3.13492, 2.56667)
+sprite_frames = SubResource("SpriteFrames_c5yjt")
+animation = &"idleOrRun"
+autoplay = "idleOrRun"
+frame = 1
+frame_progress = 0.823708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(80.5, 29.25)
+shape = SubResource("RectangleShape2D_qlnhi")
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+visible = false
+position = Vector2(82, 29.5)
+shape = SubResource("CircleShape2D_2i828")
+
+[node name="attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+visible = false
+position = Vector2(82, 30)
+shape = SubResource("RectangleShape2D_8eiuf")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="detector" to="." method="_on_detector_body_exited"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]

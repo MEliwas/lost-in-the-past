@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 var run_speed = 400.0
 var walk_speed = 200.0
-var big_jump = -400
-var small_jump = -300
+var big_jump = -500
+var small_jump = -400
 var run = walk_speed
 var jump
 
@@ -20,7 +20,7 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 
 	# Обработка прыжка
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		if Input.is_action_pressed("shift") and Global.stamina >= 10:
 			velocity.y = big_jump
 			Global.stamina -= 10 
