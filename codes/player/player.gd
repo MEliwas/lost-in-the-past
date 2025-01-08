@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var run_speed = 400.0
-var walk_speed = 200.0
+var run_speed = 450.0
+var walk_speed = 250.0
 var big_jump = -500
 var small_jump = -400
 var run = walk_speed

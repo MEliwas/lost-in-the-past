@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk1fri51ypjrr"]
+[gd_scene load_steps=10 format=3 uid="uid://bk1fri51ypjrr"]
 
 [ext_resource type="Texture2D" uid="uid://ceu1e28tlp13r" path="res://sprits/tilemap/atlas (1).png" id="1_u314x"]
 [ext_resource type="PackedScene" uid="uid://fcc5pq6705b4" path="res://scenes/player.tscn" id="2_x8a7l"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mfeavq58ovhk" path="res://scenes/inventory/inventory_item.tscn" id="4_w0xvj"]
 [ext_resource type="Texture2D" uid="uid://p361h33pafin" path="res://sprits/cake.png" id="5_bdrek"]
 [ext_resource type="PackedScene" uid="uid://bppbn4ry4digd" path="res://scenes/pterodaktel.tscn" id="6_2011w"]
+[ext_resource type="PackedScene" uid="uid://bjfgv7r1815p0" path="res://scenes/spinosaurus.tscn" id="7_68mvc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ex46b"]
 texture = ExtResource("1_u314x")
@@ -162,7 +163,7 @@ layer_0/tile_data = PackedInt32Array(1966080, 65536, 0, 1966081, 131072, 0, 1966
 position = Vector2(455, 928)
 
 [node name="T-rex" parent="." instance=ExtResource("3_2vu6a")]
-position = Vector2(1541, 917)
+position = Vector2(109, 819)
 
 [node name="inventory_item" parent="." instance=ExtResource("4_w0xvj")]
 position = Vector2(249, 948)
@@ -172,4 +173,7 @@ item_texture = ExtResource("5_bdrek")
 item_effect = "насыщение"
 
 [node name="pterodaktel" parent="." instance=ExtResource("6_2011w")]
-position = Vector2(775, 782)
+position = Vector2(742, 435)
+
+[node name="dinozaur" parent="." instance=ExtResource("7_68mvc")]
+position = Vector2(-1190, 1130)
