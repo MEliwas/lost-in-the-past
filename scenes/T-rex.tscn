@@ -10,7 +10,7 @@ size = Vector2(128, 128)
 radius = 334.112
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsv4h"]
-size = Vector2(18.8571, 18.8571)
+size = Vector2(18.9524, 19.3333)
 
 [node name="T-rex" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -33,7 +33,7 @@ shape = SubResource("CircleShape2D_qobc7")
 [node name="attack" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
-position = Vector2(4, -62)
+position = Vector2(3.66659, -63.6667)
 scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_nsv4h")
 

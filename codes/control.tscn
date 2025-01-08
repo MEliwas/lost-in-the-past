@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv1sgr555213a"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_oc33j"]
+
+[node name="Control" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oc33j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 175.0
+offset_right = 1701.0
+offset_bottom = 889.0
+theme_override_font_sizes/font_size = 50
+text = "jnyhjcfkdcukduykfycuklfyi"
