@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcicepvy2mawa"]
+
+[ext_resource type="Script" path="res://codes/t_rex.gd" id="1_ia8ii"]
+[ext_resource type="Texture2D" uid="uid://c160ocf5ndrg1" path="res://icon.svg" id="1_s2ua3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crm3s"]
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qobc7"]
+radius = 542.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsv4h"]
+size = Vector2(18.8571, 18.8571)
+
+[node name="T-rex" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_ia8ii")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+texture = ExtResource("1_s2ua3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_crm3s")
+
+[node name="detector" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+shape = SubResource("CircleShape2D_qobc7")
+
+[node name="attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+position = Vector2(-9.53674e-07, -64)
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_nsv4h")
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="detector" to="." method="_on_detector_body_exited"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]

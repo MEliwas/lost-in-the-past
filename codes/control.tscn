@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dv1sgr555213a"]
 
-[ext_resource type="Script" path="res://control.gd" id="1_oc33j"]
+[ext_resource type="Script" path="res://codes/control.gd" id="1_oc33j"]
 
 [node name="Control" type="Control"]
 visible = false
